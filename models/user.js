@@ -50,8 +50,8 @@ const user = new mongoose.Schema({
 
 	pinCode: {
 		type: Number,
-		minLength: [6, "PIN code must be of six digits"],
-		maxLength: [6, "PIN code must be of six digits"],
+		// minLength: [6, "PIN code must be of six digits"],
+		// maxLength: [6, "PIN code must be of six digits"],
 		required: true,
 	},
 
