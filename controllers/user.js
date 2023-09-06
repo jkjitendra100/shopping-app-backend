@@ -30,7 +30,7 @@ export const login = asyncAwaitError(async (req, res, next) => {
 
 // Signup function
 export const signup = asyncAwaitError(async (req, res, next) => {
-  const { name, email, password, address, country, state, city, pinCode } =
+  const { name, email, password, address1, address2, country, state, city, pinCode } =
     req.body;
 
   await User.findOne({ email }).then((user) => {
@@ -53,7 +53,8 @@ export const signup = asyncAwaitError(async (req, res, next) => {
     name,
     email,
     password,
-    address,
+    address1,
+    address2,
     country,
     state,
     city,

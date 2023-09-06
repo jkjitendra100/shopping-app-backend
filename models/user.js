@@ -23,31 +23,36 @@ const user = new mongoose.Schema({
 		select: false,
 	},
 
-	address: {
+	address1: {
 		type: String,
 		required: true,
 	},
 
+	address2: {
+		type: String,
+		required: false,
+	},
+
 	country: {
 		type: String,
-		default: "",
+		required: true,
 	},
 
 	state: {
 		type: String,
-		default: "",
+		required: true,
 	},
 
 	city: {
 		type: String,
-		default: "",
+		required: true,
 	},
 
 	pinCode: {
 		type: Number,
 		minLength: [6, "PIN code must be of six digits"],
 		maxLength: [6, "PIN code must be of six digits"],
-		default: 444444,
+		required: true,
 	},
 
 	role: {
