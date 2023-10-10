@@ -1,37 +1,45 @@
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Please enter product name"],
-  },
+	name: {
+		type: String,
+		required: [true, "Please enter product name"],
+	},
 
-  description: {
-    type: String,
-    required: [true, "Please enter product description"],
-  },
+	description: {
+		type: String,
+		required: [true, "Please enter product description"],
+	},
 
-  price: {
-    type: Number,
-    required: [true, "Please enter product price"],
-  },
+	price: {
+		type: Number,
+		required: [true, "Please enter product price"],
+	},
 
-  stock: {
-    type: Number,
-    required: [true, "Please enter product stock"],
-  },
+	// stock: {
+	//   type: Number,
+	//   required: [true, "Please enter product stock"],
+	// },
 
-  images: [{ public_id: String, url: String }],
+	images: [{ public_id: String, url: String }],
 
-  category: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Category",
-  },
+	category: {
+		type: String,
+	},
 
-  createdAt: {
-    type: Date,
-    default: Date.now(),
-  },
+	subCategory: {
+		type: String,
+	},
+
+	createdAt: {
+		type: Date,
+		default: Date.now(),
+	},
+
+	updatedAt: {
+		type: Date,
+		default: Date.now(),
+	},
 });
 
 export const Product = mongoose.model("Product", schema);

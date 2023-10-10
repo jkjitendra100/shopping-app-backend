@@ -18,7 +18,7 @@ const user = new mongoose.Schema({
 
 	mobile: {
 		type: Number,
-		required: [true, "Please enter mobile no."],
+		required: [false, "Please enter mobile no."],
 	},
 
 	password: {
@@ -30,7 +30,7 @@ const user = new mongoose.Schema({
 
 	address1: {
 		type: String,
-		required: true,
+		required: false,
 	},
 
 	address2: {
@@ -40,24 +40,24 @@ const user = new mongoose.Schema({
 
 	country: {
 		type: String,
-		required: true,
+		required: false,
 	},
 
 	state: {
 		type: String,
-		required: true,
+		required: false,
 	},
 
 	city: {
 		type: String,
-		required: true,
+		required: false,
 	},
 
 	pinCode: {
 		type: Number,
 		// minLength: [6, "PIN code must be of six digits"],
 		// maxLength: [6, "PIN code must be of six digits"],
-		required: true,
+		required: false,
 	},
 
 	role: {
@@ -76,7 +76,7 @@ const user = new mongoose.Schema({
 });
 
 user.pre("save", async function (next) {
-	if(!this.isModified("password")) return next()
+	if (!this.isModified("password")) return next();
 	this.password = await bcrypt.hash(this.password, 10);
 });
 
