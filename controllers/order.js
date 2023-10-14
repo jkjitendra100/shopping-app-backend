@@ -3,6 +3,7 @@ import { Order } from "../models/order.js";
 import { Product } from "../models/product.js";
 import ErrorHandler from "../utils/error.js";
 import { stripe } from "../server.js";
+import { User } from "../models/user.js";
 
 export const processPayment = asyncAwaitError(async (req, res, next) => {
   const { totalAmount } = req.body;
@@ -23,34 +24,27 @@ export const processPayment = asyncAwaitError(async (req, res, next) => {
 
 export const createOrder = asyncAwaitError(async (req, res, next) => {
   const {
-    shippingInfo,
+    // shippingInfo,
     orderItems,
-    paymentNMethod,
+    paymentMethod,
     paymentInfo,
     itemsPrice,
     taxPrice,
-    shippingCharges,
+    selectedPlayers,
     totalAmount,
   } = req.body;
 
   await Order.create({
     user: req.user._id,
-    shippingInfo,
+    // shippingInfo,
     orderItems,
-    paymentNMethod,
+    paymentMethod,
     paymentInfo,
     itemsPrice,
     taxPrice,
-    shippingCharges,
+    selectedPlayers,
     totalAmount,
   });
-
-  // Reduce the product stock
-  for (let i = 0; i < orderItems.length; i++) {
-    const product = await Product.findById(orderItems[i].product);
-    product.stock -= orderItems[i].quantity;
-    await product.save();
-  }
 
   res.status(201).json({
     success: true,

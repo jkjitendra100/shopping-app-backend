@@ -1,92 +1,93 @@
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
-  shippingInfo: {
-    address: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-    country: {
-      type: String,
-      required: true,
-    },
-    pinCode: {
-      type: Number,
-      required: true,
-    },
-  },
+  // shippingInfo: {
+  //   address: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   city: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   country: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   pinCode: {
+  //     type: Number,
+  //     required: true,
+  //   },
+  // },
+
+  selectedPlayers: [String],
 
   orderItems: [
     {
       name: {
         type: String,
-        required: true,
+        required: false,
       },
 
       price: {
         type: Number,
-        required: true,
+        required: false,
       },
 
       quantity: {
         type: Number,
-        required: true,
+        required: false,
       },
 
       image: {
         type: String,
-        required: true,
+        required: false,
       },
 
       product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
-        required: true,
+        type: String,
+        required: false,
       },
     },
   ],
 
   user: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: "User",
-    required: true,
+    required: false,
   },
 
   paymentMethod: {
     type: String,
-    enum: ["COD", "ONLINE"],
-    default: "COD",
+    enum: ["CARD", "UPI"],
+    default: "CARD",
   },
 
-  paidAt: Date,
+  paymentAt: Date,
 
   paymentInfo: {
-    id: String,
-    status: String,
+    id: { type: String, required: false },
+    status: { type: String, required: false },
   },
 
   itemsPrice: {
     type: Number,
-    required: true,
+    required: false,
   },
 
   taxPrice: {
     type: Number,
-    required: true,
+    required: false,
   },
 
-  shippingCharges: {
-    type: Number,
-    required: true,
-  },
+  // shippingCharges: {
+  //   type: Number,
+  //   required: true,
+  // },
 
   totalAmount: {
     type: Number,
-    required: true,
+    required: false,
   },
 
   orderStatus: {
